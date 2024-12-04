@@ -1,7 +1,7 @@
 # Simple Device Matching Backend Service
 
 ## Prerequisites
-- Java 11 or higher
+- Java 17 or higher
 - Maven
 - Aerospike Community Edition
 
