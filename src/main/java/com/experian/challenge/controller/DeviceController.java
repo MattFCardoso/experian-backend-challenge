@@ -4,9 +4,6 @@ import com.experian.challenge.model.dto.DeviceRequestDTO;
 import com.experian.challenge.model.dto.DeviceResponseDTO;
 import com.experian.challenge.model.entity.Device;
 import com.experian.challenge.service.DeviceServiceImpl;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +22,7 @@ public class DeviceController {
 
     @PostMapping("/match")
     public ResponseEntity<DeviceResponseDTO> matchDevice(@RequestBody DeviceRequestDTO deviceRequestDTO) {
-        DeviceResponseDTO responseDTO = deviceService.createOrUpdateDevice(deviceRequestDTO);
+        DeviceResponseDTO responseDTO = deviceService.createOrUpdateDeviceCount(deviceRequestDTO);
         return ResponseEntity.ok(responseDTO);
     }
 
