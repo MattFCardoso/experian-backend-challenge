@@ -23,7 +23,8 @@ public class DeviceServiceImpl implements DeviceService {
         this.deviceMapper = deviceMapper;
     }
 
-    public DeviceResponseDTO createOrUpdateDevice(DeviceRequestDTO deviceRequestDTO) {
+    @Override
+    public DeviceResponseDTO createOrUpdateDeviceCount(DeviceRequestDTO deviceRequestDTO) {
         String userAgent = deviceRequestDTO.getUserAgent();
         String osName = UserAgentParser.getOsName(userAgent);
         String osVersion = UserAgentParser.getOsVersion(userAgent);
@@ -42,14 +43,17 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceMapper.toResponseDTO(deviceRepository.save(newDevice));
     }
 
+    @Override
     public Optional<Device> getDeviceById(String id) {
         return deviceRepository.findById(id);
     }
 
+    @Override
     public List<Device> getDevicesByOsName(String osName) {
         return deviceRepository.findByOsName(osName);
     }
 
+    @Override
     public void deleteDevicesByIds(List<String> ids) {
         deviceRepository.deleteAllById(ids);
     }
