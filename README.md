@@ -20,3 +20,9 @@ Run `mvn test` to execute unit tests.
 - `GET /devices/{id}`: Get a device by ID.
 - `GET /devices`: Get devices by OS name.
 - `DELETE /devices`: Delete devices by IDs.
+
+## Swagger Documentation
+Swagger documentation is available to help you explore and test the API endpoints. Once the application is running, you can access the Swagger UI at:
+http://localhost:8080/swagger-ui.html
+
+This will provide a user-friendly interface to interact with the API and view the available endpoints and their details.
