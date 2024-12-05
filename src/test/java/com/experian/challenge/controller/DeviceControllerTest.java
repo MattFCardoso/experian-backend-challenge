@@ -1,5 +1,6 @@
 package com.experian.challenge.controller;
 
+import com.experian.challenge.model.dto.DeviceRequestDTO;
 import com.experian.challenge.model.dto.DeviceResponseDTO;
 import com.experian.challenge.model.entity.Device;
 import com.experian.challenge.service.DeviceServiceImpl;
@@ -50,7 +51,7 @@ class DeviceControllerTest {
         responseDTO.setBrowserVersion("58.0.3029.110");
         responseDTO.setHitCount(1);
 
-        when(deviceService.createOrUpdateDeviceCount(any(DeviceRequestDTO.class))).thenReturn(responseDTO);
+        when(deviceService.createOrUpdateDeviceCount(String.valueOf(any(DeviceRequestDTO.class)))).thenReturn(responseDTO);
 
         mockMvc.perform(post("/api/devices/match")
                         .contentType(MediaType.APPLICATION_JSON)
