@@ -1,6 +1,5 @@
 package com.experian.challenge.service;
 
-import com.experian.challenge.model.dto.DeviceRequestDTO;
 import com.experian.challenge.model.entity.Device;
 import com.experian.challenge.model.mappers.DeviceMapper;
 import com.experian.challenge.repository.DeviceRepository;

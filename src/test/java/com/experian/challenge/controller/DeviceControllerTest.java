@@ -1,6 +1,5 @@
 package com.experian.challenge.controller;
 
-import com.experian.challenge.model.dto.DeviceRequestDTO;
 import com.experian.challenge.model.dto.DeviceResponseDTO;
 import com.experian.challenge.model.entity.Device;
 import com.experian.challenge.service.DeviceServiceImpl;

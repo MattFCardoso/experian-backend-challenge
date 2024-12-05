@@ -3,7 +3,8 @@
 ## Prerequisites
 - Java 17 or higher
 - Maven
-- Aerospike Community Edition
+- Run docker-compose.yml to start Aerospike database
+```shell
 
 ## Setup
 1. Clone the repository.

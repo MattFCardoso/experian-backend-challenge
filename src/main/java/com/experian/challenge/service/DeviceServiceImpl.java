@@ -1,12 +1,13 @@
 package com.experian.challenge.service;
 
-import com.experian.challenge.model.dto.DeviceRequestDTO;
 import com.experian.challenge.model.dto.DeviceResponseDTO;
 import com.experian.challenge.model.entity.Device;
 import com.experian.challenge.model.mappers.DeviceMapper;
 import com.experian.challenge.repository.DeviceRepository;
-import com.experian.challenge.util.UserAgentParser;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import ua_parser.Client;
+import ua_parser.Parser;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,12 +25,19 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public DeviceResponseDTO createOrUpdateDeviceCount(DeviceRequestDTO deviceRequestDTO) {
-        String userAgent = deviceRequestDTO.getUserAgent();
-        String osName = UserAgentParser.getOsName(userAgent);
-        String osVersion = UserAgentParser.getOsVersion(userAgent);
-        String browserName = UserAgentParser.getBrowserName(userAgent);
-        String browserVersion = UserAgentParser.getBrowserVersion(userAgent);
+    public DeviceResponseDTO createOrUpdateDeviceCount(String userAgent) {
+        Parser uaParser = new Parser();
+        Client client = uaParser.parse(userAgent);
+
+
+        String osVersionMajor = ObjectUtils.isEmpty(client.os.major) ? "0." : client.os.major + ".";
+        String osVersionMinor = ObjectUtils.isEmpty(client.os.minor) ? "0." : client.os.minor + ".";
+        String osVersionPatch = ObjectUtils.isEmpty(client.os.patch) ? "0" : client.os.patch;
+
+        String osName = client.os.family;
+        String osVersion = osVersionMajor + osVersionMinor + osVersionPatch;
+        String browserName = client.userAgent.family;
+        String browserVersion = client.userAgent.major + "." + client.userAgent.minor + "." + client.userAgent.patch;
 
         List<Device> existingDevices = deviceRepository.findByOsNameAndOsVersionAndBrowserNameAndBrowserVersion(osName, osVersion, browserName, browserVersion);
 
